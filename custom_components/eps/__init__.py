@@ -4,7 +4,7 @@ import asyncio
 from pyepsalarm import EPS
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, Platform
+from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, CONF_DEVICE_TOKEN, CONF_PHONE_TYPE, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
@@ -19,7 +19,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     token: str = entry.data[CONF_TOKEN]
     username: str = entry.data[CONF_USERNAME]
     password: str = entry.data[CONF_PASSWORD]
-    eps_api = EPS(token, username, password)
+    device_token: str = entry.data[CONF_DEVICE_TOKEN]
+    phone_type: str = entry.data[CONF_PHONE_TYPE]
+    eps_api = EPS(token, username, password, device_token, phone_type)
 
     # Use the EPS siteId as a unique_id
     try:
