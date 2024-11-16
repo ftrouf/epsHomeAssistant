@@ -6,7 +6,9 @@
         "data": {
           "token": "[%key:common::config_flow::data::access_token%]",
           "username": "[%key:common::config_flow::data::username%]",
-          "password": "[%key:common::config_flow::data::password%]"
+          "password": "[%key:common::config_flow::data::password%]",
+          "device_token": "[%key:common::config_flow::data::device_token%]",
+          "phone_type": "[%key:common::config_flow::data::phone_type%]"
         }
       }
     },
