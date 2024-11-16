@@ -12,7 +12,9 @@
                 "data": {
                     "password": "Password",
                     "token": "Access token",
-                    "username": "Username"
+                    "username": "Username",
+                    "device_token": "Phone Device Token",
+                    "phone_type": "Phone Type"
                 },
                 "title": "Connect to EPS"
             }
