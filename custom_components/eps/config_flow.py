@@ -18,7 +18,7 @@ DATA_SCHEMA = vol.Schema(
         vol.Required(CONF_USERNAME): cv.string,
         vol.Required(CONF_PASSWORD): cv.string,
         vol.Required(CONF_DEVICE_TOKEN): cv.string,
-        vol.Required(CONF_PHONE_TYPE): cv.string
+        vol.Required(CONF_PHONE_TYPE): cv.string,
     }
 )
 
