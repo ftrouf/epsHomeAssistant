@@ -5,7 +5,7 @@ from pyepsalarm import EPS
 import voluptuous as vol
 
 from homeassistant import config_entries, core
-from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, CONF_DEVICE_TOKEN, CONF_PHONE_TYPE
 import homeassistant.helpers.config_validation as cv
 
 from .const import DOMAIN
@@ -17,12 +17,14 @@ DATA_SCHEMA = vol.Schema(
         vol.Required(CONF_TOKEN): cv.string,
         vol.Required(CONF_USERNAME): cv.string,
         vol.Required(CONF_PASSWORD): cv.string,
+        vol.Required(CONF_DEVICE_TOKEN): cv.string,
+        vol.Required(CONF_PHONE_TYPE): cv.string
     }
 )
 
 
-async def _get_device_site(hass: core.HomeAssistant, token, username, password):
-    eps_api = EPS(token, username, password)
+async def _get_device_site(hass: core.HomeAssistant, token, username, password, device_token, phone_type):
+    eps_api = EPS(token, username, password, device_token, phone_type)
     return await hass.async_add_executor_job(eps_api.get_site)
 
 
@@ -40,11 +42,13 @@ class EPSConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             token = user_input[CONF_TOKEN]
             username = user_input[CONF_USERNAME]
             password = user_input[CONF_PASSWORD]
+            device_token = user_input[CONF_DEVICE_TOKEN]
+            phone_type = user_input[CONF_PHONE_TYPE]
 
             try:
                 # If we are able to get the site address, we are able to establish
                 # a connection to the device.
-                site = await _get_device_site(self.hass, token, username, password)
+                site = await _get_device_site(self.hass, token, username, password, device_token, phone_type)
             except ConnectionError:
                 errors["base"] = "cannot_connect"
             except Exception:  # pylint: disable=broad-except
