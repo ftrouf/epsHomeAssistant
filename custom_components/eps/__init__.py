@@ -4,7 +4,8 @@ import asyncio
 from pyepsalarm import EPS
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, CONF_DEVICE_TOKEN, CONF_PHONE_TYPE, Platform
+from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, Platform
+from .const import CONF_DEVICE_TOKEN, CONF_PHONE_TYPE
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
