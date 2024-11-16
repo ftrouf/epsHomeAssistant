@@ -57,7 +57,7 @@ class EPSPanel(CoordinatorEntity[EPSDataUpdateCoordinator], AlarmControlPanelEnt
         """Send disarm command."""
         # The update takes roughly 5s to be applied, so we manually update it here.
         # In case it fails server side, it will be anyway updated at next scan
-        if self.coordinator.eps_api.disarm(silent=True):
+        if self.coordinator.eps_api.disarm(silent=False):
             self.coordinator.state = STATE_ALARM_DISARMED
             self.schedule_update_ha_state()
 
