@@ -5,7 +5,9 @@ from pyepsalarm import EPS
 import voluptuous as vol
 
 from homeassistant import config_entries, core
-from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME, CONF_DEVICE_TOKEN, CONF_PHONE_TYPE
+from homeassistant.const import CONF_PASSWORD, CONF_TOKEN, CONF_USERNAME
+from .const import CONF_DEVICE_TOKEN, CONF_PHONE_TYPE
+
 import homeassistant.helpers.config_validation as cv
 
 from .const import DOMAIN
